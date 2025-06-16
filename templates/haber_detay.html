@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ haber.title }} - Detay{% endblock %}
+
+{% block content %}
+<div class="container my-5 pt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card bg-dark text-light shadow-sm border-0">
+                <img src="{{ haber.image.url }}" class="card-img-top img-fluid rounded-top" alt="{{ haber.title }}" style="max-height: 450px; object-fit: cover;">
+                <div class="card-body">
+                    <h2 class="card-title mb-3">{{ haber.title }}</h2>
+                    <p class="text-muted fst-italic mb-4">Yayınlanma Tarihi: {{ haber.created_at|date:"d F Y H:i" }}</p>
+                    <hr class="border-light">
+                    <p class="card-text" style="line-height: 1.8; font-size: 1.15rem;">
+                        {{ haber.content|linebreaks }}
+                    </p>
+                    <a href="{% url 'anasayfa' %}" class="btn btn-outline-info mt-4 text-decoration-none">
+                        <i class="bi bi-arrow-left"></i> Anasayfaya Dön
+                    </a>
+                    <a href="{% url 'haber_listesi' %}" class="btn btn-outline-info mt-4 text-decoration-none">
+                        <i class="bi bi-arrow-left"></i> Tüm Haberlere Dön
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

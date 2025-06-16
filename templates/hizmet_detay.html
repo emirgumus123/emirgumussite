@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ hizmet.title }} - Emir Gümüş{% endblock %}
+
+{% block content %}
+<section class="py-5" style="color: #e0e0e0;">
+    <div class="container pt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-sm border-0" style="background-color: #1e1e1e;">
+                    <img src="{{ hizmet.image.url }}" class="card-img-top" alt="{{ hizmet.title }}" style="object-fit: cover; max-height: 400px;">
+                    <div class="card-body p-5">
+                        <h1 class="card-title mb-4" style="color: #f8f9fa;">{{ hizmet.title }}</h1>
+                        <p class="card-text" style="color: #ced4da;">{{ hizmet.description|linebreaks }}</p>
+                        <a href="{% url 'hizmetler' %}" class="btn btn-outline-info mt-4 text-decoration-none">← Tüm Hizmetlere Dön</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Hizmetler - Emir Gümüş{% endblock %}
+
+{% block content %}
+
+<section class="py-5" style="color: #e0e0e0;">
+    <div class="container pt-4">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold" style="color: #f8f9fa;">Hizmetlerimiz</h1>
+            <p class="lead" style="color: #adb5bd;">Sunuduğumuz hizmetler hakkında detaylı bilgi alabilirsiniz.</p>
+            <hr class="mx-auto" style="width: 60px; border-top: 3px solid #0dcaf0;">
+        </div>
+
+        <div class="row">
+          {% for hizmet in hizmetler %}
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'hizmet_detay' hizmet.pk %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm border-0"
+                     style="background-color: #1e1e1e; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="overflow-hidden rounded-top">
+                        <img src="{{ hizmet.image.url }}" class="card-img-top" alt="{{ hizmet.title }}"
+                             style="height: 230px; object-fit: cover; filter: brightness(0.85); transition: filter 0.3s ease;">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #f8f9fa;">{{ hizmet.title }}</h5>
+                        <p class="card-text" style="color: #ced4da;">{{ hizmet.short_description }}</p>
+                        <a href="{% url 'hizmet_detay' hizmet.pk %}" class="btn btn-outline-info btn-sm mt-2 text-decoration-none">Detaylar</a>
+                    </div>
+                </div>
+                </a>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(13, 202, 240, 0.5);
+}
+.card:hover img {
+    filter: brightness(1);
+}
+</style>
+
+{% endblock %}

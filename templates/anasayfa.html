@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ana Sayfa - Emir Gümüş{% endblock title %}
+
+{% block content %}
+  <!--Slider-->
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      {% for slider in sliders %}
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"
+                aria-current="{% if forloop.first %}true{% endif %}"
+                aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+
+    <div class="carousel-inner">
+      {% for slider in sliders %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img src="{{ slider.image.url }}" class="d-block w-100" alt="Slider Resmi" style="max-height: 450px; object-fit: cover;">
+        </div>
+      {% endfor %}
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
+      <span class="visually-hidden">Önceki</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
+      <span class="visually-hidden">Sonraki</span>
+    </button>
+  </div>
+
+<!-- Typed.js -->
+<div class="container d-flex justify-content-center align-items-center pt-4 vh-70">
+  <h1 id="typed" class="text-center text-light display-3 typed-fixed-height"></h1>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed('#typed', {
+    strings: ["Hoş Geldiniz!", "Sitemize Bakın.", "Projelerimizi Keşfedin."],
+    typeSpeed: 50,
+    backSpeed: 30,
+    loop: true
+  });
+</script>
+<style>
+  .typed-fixed-height {
+    min-height: 80px; /* Yazının kaplayacağı minimum alan (isteğe göre ayarla) */
+    white-space: nowrap; /* Yazının satır atlamasını engeller */
+  }
+  .typed-cursor {
+  font-size: 2.5rem;  /* Yazı büyüklüğüne göre ayarla, mesela display-3 için 2.5rem uygun */
+  color: white;       /* Yazı rengin neyse onu yap */
+}
+
+</style>
+<!-- /Typed.js -->
+
+<div class="container py-5">
+  <!-- 1. Görsel Solda -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6 text-center">
+      <img src="{% static 'img/gorsel1.png' %}" class="fade-in rounded shadow"
+           alt="..."
+           style="width: 400px; height: 250px; object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-white">Proje 1</h2>
+      <p class="text-light">
+        Buraya görselle ilgili detaylı açıklama, bilgi ya da tanıtım metni yazabilirsiniz. Mobilde alta geçer.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. Görsel Sağda -->
+  <div class="row align-items-center flex-md-row-reverse">
+    <div class="col-md-6 text-center">
+      <img src="{% static 'img/gorsel1.png' %}" class="fade-in rounded shadow"
+           alt="..."
+           style="width: 400px; height: 250px; object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-white">Bunun açıklaması</h2>
+      <p class="text-light">
+        Buraya görselle ilgili detaylı açıklama, bilgi ya da tanıtım metni yazabilirsiniz. Mobilde alta geçer.
+      </p>
+    </div>
+  </div>
+
+  <!-- 3. Görsel Solda -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6 text-center">
+      <img src="{% static 'img/gorsel1.png' %}" class="fade-in rounded shadow"
+           alt="..."
+           style="width: 400px; height: 250px; object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-white">Proje 1</h2>
+      <p class="text-light">
+        Buraya görselle ilgili detaylı açıklama, bilgi ya da tanıtım metni yazabilirsiniz. Mobilde alta geçer.
+      </p>
+    </div>
+  </div>
+
+  <!-- 4. Görsel Sağda -->
+  <div class="row align-items-center flex-md-row-reverse">
+    <div class="col-md-6 text-center">
+      <img src="{% static 'img/gorsel1.png' %}" class="fade-in rounded shadow"
+           alt="..."
+           style="width: 400px; height: 250px; object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-white">Bunun açıklaması</h2>
+      <p class="text-light">
+        Buraya görselle ilgili detaylı açıklama, bilgi ya da tanıtım metni yazabilirsiniz. Mobilde alta geçer.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Haberler -->
+  <div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4 text-white">Son Haberler</h2>
+    <hr class="border-light">
+    <div class="row">
+      {% for haber in haberler %}
+        <div class="col-md-3 mb-4">
+          <div class="card bg-dark text-light h-100 shadow-sm border-0">
+            <a href="{% url 'haber_detay' haber.id %}">
+              <img src="{{ haber.image.url }}" class="card-img-top" alt="{{ haber.title }}" style="height: 180px; object-fit: cover;">
+            </a>
+            <div class="card-body">
+              <a href="{% url 'haber_detay' haber.id %}" class="text-decoration-none text-light">
+                <h5 class="card-title">{{ haber.title }}</h5>
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
